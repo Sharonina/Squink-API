@@ -1,1 +1,1 @@
-# squink-api
+# Squink-API
