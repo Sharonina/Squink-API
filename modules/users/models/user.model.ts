@@ -1,14 +1,13 @@
 import mongoose from "mongoose";
-
 export interface UserBody {
-  uuid: string;
-}
-export interface IUser extends UserBody {
   name: string;
   email: string;
   password: string;
 }
 
+export interface IUser extends UserBody {
+  uuid: string;
+}
 const userSchema = new mongoose.Schema<IUser>({
   name: { type: String, default: null, required: true },
   email: { type: String, unique: true, required: true },
