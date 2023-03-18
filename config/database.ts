@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 
 const { DB_URL } = process.env;
 
-exports.connect = () => {
+const dataBase = () => {
   mongoose
     .connect(DB_URL || "")
     .then(() => {
@@ -16,3 +16,5 @@ exports.connect = () => {
       process.exit(1);
     });
 };
+
+export default dataBase;

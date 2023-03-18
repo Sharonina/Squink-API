@@ -1,10 +1,11 @@
 import { uuid } from "uuidv4";
 import mongoose, { Types } from "mongoose";
 
+type NoteColor = "pink" | "blue" | "orange" | "lila" | "dark-blue";
 export interface NoteBody {
   title: string;
   content: string;
-  color: string;
+  color: NoteColor;
 }
 
 export interface INote extends NoteBody {

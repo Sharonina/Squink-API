@@ -2,9 +2,9 @@ import mongoose from "mongoose";
 import { errorObject } from "../../../utils/errors.utils";
 import { NoteBody, NoteModel } from "../models/note.model";
 
-// Get all notes
-export const getAllNotes = async () => {
-  return await NoteModel.find().exec();
+// Get all notes by user
+export const getAllNotes = async (user_id: string) => {
+  return await NoteModel.find({ user: user_id }).exec();
 };
 
 // Create note
