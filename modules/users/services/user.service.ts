@@ -89,7 +89,7 @@ export const login = async (userData: UserBody) => {
   if (!(email && password)) {
     throw errorObject(400, "All input is required");
   }
-  const user = await UserModel.findOne({ email }).populate("restaurant").exec();
+  const user = await UserModel.findOne({ email }).exec();
 
   if (!user) {
     throw errorObject(404, "Invalid credentials");
