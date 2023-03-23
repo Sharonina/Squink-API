@@ -49,13 +49,13 @@ export const updateNoteById = async (noteId: string, noteData: NoteBody) => {
 };
 
 // delete note by id
-export const deleteNoteById = async (noteId: string) => {
-  const isMongoId = mongoose.Types.ObjectId.isValid(noteId);
+export const deleteNoteById = async (user_id: string, note_id: string) => {
+  const isMongoId = mongoose.Types.ObjectId.isValid(note_id);
   if (!isMongoId) {
     throw errorObject(400, "Invalid note id");
   }
 
-  const note = await NoteModel.findByIdAndDelete(noteId).exec();
+  const note = await NoteModel.findByIdAndDelete(note_id).exec();
   if (!note) {
     throw errorObject(404, "Note not found");
   }

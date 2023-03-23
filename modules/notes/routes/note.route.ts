@@ -1,7 +1,9 @@
+import { UserBody } from "./../../users/models/user.model";
 import {
   createNote,
   getAllNotes,
   updateNoteById,
+  deleteNoteById,
 } from "./../services/note.service";
 import express, { Request, Response, NextFunction } from "express";
 import { verifyTokenMiddleware } from "../../../middleware/auth";
@@ -45,5 +47,18 @@ router.put("/", async (req: Request, res: Response, next: NextFunction) => {
 });
 
 //delete note by id
+router.delete(
+  "/:note_id",
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { note_id } = req.params;
+      const { user_id } = res.locals.user;
+      const note = await deleteNoteById(user_id, note_id as string);
+      res.status(201).json(note);
+    } catch (err) {
+      next(err);
+    }
+  }
+);
 
 export default router;
