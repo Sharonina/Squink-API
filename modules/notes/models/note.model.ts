@@ -1,13 +1,15 @@
 import { v4 as uuid } from "uuid";
 import mongoose, { Types } from "mongoose";
 
-type NoteColor =
-  | "pink"
-  | "darkblue"
-  | "lightBlue"
-  | "orange"
-  | "purple"
-  | "white";
+export const validNoteColors = [
+  "pink",
+  "darkblue",
+  "lightBlue",
+  "orange",
+  "purple",
+];
+
+export type NoteColor = typeof validNoteColors[number];
 export interface NoteBody {
   title: string;
   content: string;
@@ -36,5 +38,5 @@ const noteSchema = new mongoose.Schema<INote>({
   updated_at: { type: Date, default: new Date(), required: false },
 });
 
-noteSchema.index({ user: 1 });
+noteSchema.index({ uuid: 1, user: 1 });
 export const NoteModel = mongoose.model("note", noteSchema);
