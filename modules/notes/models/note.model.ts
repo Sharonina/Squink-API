@@ -1,7 +1,13 @@
-import { uuid } from "uuidv4";
+import { v4 as uuid } from "uuid";
 import mongoose, { Types } from "mongoose";
 
-type NoteColor = "pink" | "blue" | "orange" | "lila" | "dark-blue";
+type NoteColor =
+  | "pink"
+  | "darkblue"
+  | "lightBlue"
+  | "orange"
+  | "purple"
+  | "white";
 export interface NoteBody {
   title: string;
   content: string;
@@ -19,7 +25,7 @@ const noteSchema = new mongoose.Schema<INote>({
   title: { type: String, default: null, required: true },
   content: { type: String, default: null, required: true },
   color: { type: String, default: null, required: true },
-  uuid: { type: String, required: true, default: uuid() },
+  uuid: { type: String, required: true, default: uuid },
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "user",
